@@ -1,0 +1,21 @@
+version: "3.2"
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: 'neo4j'
+    environment:
+      - 'NEO4J_dbms_memory_transaction_total_max=10G'
+      - 'NEO4J_db_import_csv_buffer__size=102400000'
+    volumes:
+      - 'neo4j_data:/data/'
+      - 'neo4j_conf:/conf/'
+
+    ports:
+      - 7474:7474
+      - 7687:7687
+    restart: on-failure
+
+volumes:
+  - neo4j_data:
+  - neo4j_conf:
+    
